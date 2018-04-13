@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NestedScrollViewTest.iml" filepath="$PROJECT_DIR$/NestedScrollViewTest.iml" />
+      <module fileurl="file://E:\workspace\android_demo\android_ui_test\NestedScrollViewTest.iml" filepath="E:\workspace\android_demo\android_ui_test\NestedScrollViewTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_ui_test.iml" filepath="$PROJECT_DIR$/android_ui_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

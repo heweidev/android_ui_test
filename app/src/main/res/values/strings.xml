@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NestedScrollViewTest</string>
+    <string name="app_name">AndroidUITest</string>
     <string name="long_test_string">11111111111111111111111222222222222222222222222333333333333333333333333334444444444444444444444444444
         21111111111111111111111222222222222222222222222333333333333333333333333334444444444444444444444444444
         31111111111111111111111222222222222222222222222333333333333333333333333334444444444444444444444444444
@@ -10,5 +10,5 @@
     </string>
     <string name="share">分享</string>
     <string name="action_search">搜索</string>
-    <string name="behavior_test">com.hewei.nestedscrollviewtest.DumyBehavior</string>
+    <string name="behavior_test">com.hewei.nestedscrollviewtest.behavior.OverlapHeaderBehavior</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.hewei.nestedscrollviewtest;
+package com.hewei.nestedscrollviewtest.behavior;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
@@ -13,10 +13,10 @@ import android.view.View;
  * 此时向下滑动，listview覆盖header部分减少，直到不覆盖。listview自己开始向下滑动
  */
 
-public class DumyBehavior extends CoordinatorLayout.Behavior<View> {
-    private static final String TAG = "DumyBehavior";
+public class OverlapHeaderBehavior extends CoordinatorLayout.Behavior<View> {
+    private static final String TAG = "OverlapHeaderBehavior";
 
-    public DumyBehavior(Context context, AttributeSet attrs) {
+    public OverlapHeaderBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -34,6 +34,7 @@
 
             <Button
                 android:id="@+id/btn1"
+                android:stateListAnimator="@xml/animate_scale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="嵌套在普通ScollView"/>
@@ -79,6 +80,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Basic Behavior Test"/>
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ani test"/>
+
+            <Button
+                android:id="@+id/btn10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="pull to refresh"/>
 
             <View
                 android:layout_width="match_parent"

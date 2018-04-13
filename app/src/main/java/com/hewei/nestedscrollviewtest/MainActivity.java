@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.hewei.nestedscrollviewtest.ani.AnimationTestActivity;
+
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn6).setOnClickListener(this);
         findViewById(R.id.btn7).setOnClickListener(this);
         findViewById(R.id.btn8).setOnClickListener(this);
+        findViewById(R.id.btn9).setOnClickListener(this);
+        findViewById(R.id.btn10).setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (id == R.id.btn8) {
             Intent intent = new Intent(this, CoordinatorTestActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.btn9) {
+            Intent intent = new Intent(this, AnimationTestActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.btn10) {
+            Intent intent = new Intent(this, PullToRefreshTestActivity.class);
             startActivity(intent);
         }
     }

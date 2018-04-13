@@ -42,7 +42,7 @@ public class ListHelper {
 
             @Override
             public int getItemCount() {
-                return 100;
+                return 16;
             }
         });
     }

@@ -21,7 +21,9 @@
         <activity android:name=".TencentNbaLiveRoomActivity" />
         <activity android:name=".NestedScrollViewTestActivity" />
         <activity android:name=".LayoutTestAcitivity" />
-        <activity android:name=".CoordinatorTestActivity"></activity>
+        <activity android:name=".CoordinatorTestActivity" />
+        <activity android:name=".ani.AnimationTestActivity" />
+        <activity android:name=".PullToRefreshTestActivity"></activity>
     </application>
 
 </manifest>
