@@ -10,8 +10,8 @@ public class PullToRefreshTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_pull_to_refresh_test);
-
+        //setContentView(R.layout.activity_pull_to_refresh_test);
+        setContentView(R.layout.pull_to_fresh_no_nestedscroll);
 
 
         /*
@@ -40,6 +40,6 @@ public class PullToRefreshTestActivity extends AppCompatActivity {
         });
         */
 
-        ListHelper.initRecyclerView(findViewById(R.id.recycler));
+        //ListHelper.initRecyclerView(findViewById(R.id.recycler));
     }
 }

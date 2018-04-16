@@ -90,6 +90,7 @@ public class SimplePullToRefreshLayout extends FrameLayout {
 
     private float mInitialMotionY;
     private float mInitialDownY;
+    private float mLastY;
     private boolean mIsBeingDragged;
     private int mActivePointerId = INVALID_POINTER;
     // Whether this item is scaled up rather than clipped
@@ -258,6 +259,35 @@ public class SimplePullToRefreshLayout extends FrameLayout {
         }
     }
 
+    public void setRefreshing(boolean refreshing) {
+        if (refreshing && mRefreshing != refreshing) {
+            setRefreshing(refreshing, false);
+        } else {
+            setRefreshing(refreshing, false /* notify */);
+        }
+    }
+
+    private void setRefreshing(boolean refreshing, final boolean notify) {
+        if (mRefreshing != refreshing) {
+            mNotify = notify;
+            ensureTarget();
+            mRefreshing = refreshing;
+            if (mRefreshing) {
+                showLoading(true);
+            } else {
+                hideLoading(true);
+            }
+        }
+    }
+
+    private void showLoading(boolean ani) {
+
+    }
+
+    private void hideLoading(boolean ani) {
+
+    }
+
     public boolean canChildScrollUp() {
         ensureTarget();
 
@@ -280,14 +310,18 @@ public class SimplePullToRefreshLayout extends FrameLayout {
         final float yDiff = y - mInitialDownY;
         if (yDiff > mTouchSlop && !mIsBeingDragged) {
             mInitialMotionY = mInitialDownY + mTouchSlop;
+            mLastY = mInitialMotionY;
             mIsBeingDragged = true;
             //mProgress.setAlpha(STARTING_PROGRESS_ALPHA);
             mLoadingView.setVisibility(VISIBLE);
         }
+
+        Log.d(TAG, "mIsBeingDragged = " + mIsBeingDragged);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        logEvent(ev, "onInterceptTouchEvent");
         ensureTarget();
 
         final int action = MotionEventCompat.getActionMasked(ev);
@@ -583,6 +617,7 @@ public class SimplePullToRefreshLayout extends FrameLayout {
     public boolean onTouchEvent(MotionEvent ev) {
         final int action = MotionEventCompat.getActionMasked(ev);
         int pointerIndex = -1;
+        logEvent(ev, "onTouchEvent");
 
         if (mReturningToStart && action == MotionEvent.ACTION_DOWN) {
             mReturningToStart = false;
@@ -611,15 +646,19 @@ public class SimplePullToRefreshLayout extends FrameLayout {
                 startDragging(y);
 
                 if (mIsBeingDragged) {
-                    final float overscrollTop = (y - mInitialMotionY) * DRAG_RATE;
-                    if (overscrollTop > 0) {
-                        //moveSpinner(overscrollTop);
-
-                        int deta = (int)overscrollTop - mCurrentTargetOffsetTop;
-                        ViewCompat.offsetTopAndBottom(mTarget, deta);
+                    float deta = y - mLastY;
+                    mLastY = y;
+                    int offset;
+                    if (mCurrentTargetOffsetTop + deta > LOADING_VIEW_HEIGHT) {
+                        offset = LOADING_VIEW_HEIGHT - mCurrentTargetOffsetTop;
+                    } else if (mCurrentTargetOffsetTop + deta < 0) {
+                        offset = -mCurrentTargetOffsetTop;
                     } else {
-                        return false;
+                        offset = (int) deta;
                     }
+
+                    mCurrentTargetOffsetTop += offset;
+                    offsetLoadingView(offset);
                 }
                 break;
             }
@@ -630,7 +669,7 @@ public class SimplePullToRefreshLayout extends FrameLayout {
                             "Got ACTION_POINTER_DOWN event but have an invalid action index.");
                     return false;
                 }
-                mActivePointerId = ev.getPointerId(pointerIndex);
+                //mActivePointerId = ev.getPointerId(pointerIndex);
                 break;
             }
 
@@ -666,7 +705,13 @@ public class SimplePullToRefreshLayout extends FrameLayout {
     }
 
     private void offsetLoadingView(int offset) {
+
+
         ViewCompat.offsetTopAndBottom(mLoadingView, offset);
         ViewCompat.offsetTopAndBottom(mTarget, offset);
+    }
+
+    private void logEvent(MotionEvent event, String scene) {
+        Log.d(TAG, scene + " action = " + event);
     }
 }
